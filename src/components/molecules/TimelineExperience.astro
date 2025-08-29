@@ -16,7 +16,7 @@ const { experiences = [] } = Astro.props;
     <li class="flex gap-4 animate-appear-content">
       <!-- Año / Mes -->
       <div class="flex flex-col items-end animate-appear-date w-10 md:w-20">
-        <strong class="glass-text-title">
+        <strong class="block text-lg md:text-3xl text-left font-bold text-neutral-500 dark:text-neutral-500">
           {formatDate(exp.date.start).year}
         </strong>
         <small class="text-xs md:text-lg text-left font-bold text-neutral-500 dark:text-neutral-500">
