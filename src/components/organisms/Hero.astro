@@ -2,9 +2,12 @@
 import { PlusIcon } from "lucide-react";
 import { BubbleBackground } from "../atoms/bubble";
 import SocialButtons from "../molecules/socialButton";
-import { SpringAvatar } from "../molecules/springAvatar";
+import { Image } from "astro:assets";
+
 ---
-<SpringAvatar client:load />
+<picture class="absolute w-screen left-0 pt-10 flex items-center justify-center z-10">
+  <Image class="h-24 w-24 rounded-full overflow-hidde" src="https://avatars.githubusercontent.com/u/135039358?v=4" alt="Lucas Navarro Github picture" width={96} height={96} />
+</picture>
 
 <header class="py-24 relative w-full h-fit border-b space-y-4 md:space-y-8 gap-8 bg-foreground dark:bg-background">
   <PlusIcon className="absolute z-10 -top-3 -left-3"/>
