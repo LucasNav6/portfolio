@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@import "./utilities.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -42,49 +43,25 @@
 }
 
 :root {
-  /* === Base colors === */
   --background: #f6f8ff;
-  /* #CFC8B8 (blanco cálido) */
   --foreground: oklch(0.15 0 0);
-  /* #1F1D1B (negro suave) */
-
   --card: oklch(0.97 0 270);
-  /* #f9f7f5 aprox */
   --card-foreground: var(--foreground);
-
   --popover: var(--card);
   --popover-foreground: var(--foreground);
-
-  /* === Brand / Identity === */
   --primary: oklch(0.7 0.25 95.06);
-  /* #ffde5a amarillo */
   --primary-foreground: oklch(0.15 0 0);
-  /* negro suave para contraste */
-
   --secondary: oklch(0.22 0 260);
-  /* #1F272C gris oscuro azulado */
   --secondary-foreground: oklch(0.88 0.01 86.95);
-  /* casi blanco cálido */
-
   --accent: #e7e7e7;
-  /* #2C3A47 gris medio */
   --accent-foreground: var(--foreground);
-
   --muted: oklch(0.92 0 270);
-  /* gris clarito cálido */
   --muted-foreground: oklch(0.35 0 260);
-  /* gris más oscuro para texto sutil */
-
   --destructive: oklch(0.55 0.22 23);
-  /* rojo-anaranjado fuerte */
   --destructive-foreground: oklch(0.98 0 270);
-
-  /* === Layout === */
   --border: oklch(0.86 0 270);
   --input: var(--border);
   --ring: var(--primary);
-
-  /* === Sidebar === */
   --sidebar: var(--secondary);
   --sidebar-foreground: var(--secondary-foreground);
   --sidebar-primary: var(--primary);
@@ -93,16 +70,10 @@
   --sidebar-accent-foreground: var(--accent-foreground);
   --sidebar-border: var(--border);
   --sidebar-ring: var(--ring);
-
-  /* === Typography === */
   --font-sans: Geist, sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Geist Mono, monospace;
-
-  /* === Radii === */
   --radius: 0.5rem;
-
-  /* === Shadows (suaves, no cansan la vista) === */
   --shadow-sm: 0 1px 2px hsl(0 0% 0% / 0.08);
   --shadow-md: 0 2px 6px hsl(0 0% 0% / 0.12);
   --shadow-lg: 0 4px 12px hsl(0 0% 0% / 0.18);
@@ -110,36 +81,24 @@
 
 .dark {
   --background: oklch(0.15 0 260);
-  /* #0F172A azul muy oscuro */
   --foreground: oklab(87.957% 0.00044 0.00995);
-  /* blanco cálido */
-
   --card: oklch(0.2 0 260);
   --card-foreground: var(--foreground);
-
   --popover: var(--card);
   --popover-foreground: var(--foreground);
-
   --primary: oklch(0.9 0.15 95.06);
-  /* amarillo igual */
   --primary-foreground: oklch(0.15 0 0);
-
   --secondary: oklch(0.25 0 260);
   --secondary-foreground: var(--foreground);
-
   --accent: oklch(0.35 0 260);
   --accent-foreground: var(--foreground);
-
   --muted: oklch(0.28 0 260);
   --muted-foreground: oklch(0.75 0.02 270);
-
   --destructive: oklch(0.55 0.22 23);
   --destructive-foreground: var(--foreground);
-
   --border: oklch(0.32 0 260);
   --input: var(--border);
   --ring: var(--primary);
-
   --sidebar: oklch(0.18 0 260);
   --sidebar-foreground: var(--foreground);
   --sidebar-primary: var(--primary);
@@ -163,7 +122,6 @@
 
 @layer utilities {
   @keyframes liquid-glow {
-
     0%,
     100% {
       transform: translateX(-20%) translateY(-20%);
@@ -176,11 +134,11 @@
 
   @keyframes shine {
     0% {
-      transform: translateX(-100%);
+      transform: translateX(-130%);
     }
 
     100% {
-      transform: translateX(100%);
+      transform: translateX(200%);
     }
   }
 
@@ -223,6 +181,6 @@
 .animate-appear-ticket {
   animation: reveal-content-slow linear both;
   animation-timeline: view();
-  animation-range: entry 15% cover 30%;
+  animation-range: entry 25% cover 30%;
 }
 

@@ -1,0 +1,7 @@
+.glass-title {
+    @apply px-4 scroll-m-20 bg-clip-text text-transparent bg-gradient-to-b from-white/90 to-white/50 text-center text-3xl md:text-5xl font-extrabold tracking-tight leading-10 md:leading-16 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]
+}
+
+.glass-text {
+    @apply px-4 scroll-m-20 bg-clip-text text-transparent bg-white/70 w-full m-auto max-w-xl text-center tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-normal
+}

@@ -1,17 +1,17 @@
 ---
-import { PlusIcon } from "lucide-react";
+import { PlusIcon } from "@lucide/astro";
 import { BubbleBackground } from "../atoms/bubble";
 import SocialButtons from "../molecules/socialButton";
 import { Image } from "astro:assets";
-
 ---
+
 <picture class="absolute w-screen left-0 pt-10 flex items-center justify-center z-10">
   <Image class="h-24 w-24 rounded-full overflow-hidde" src="https://avatars.githubusercontent.com/u/135039358?v=4" alt="Lucas Navarro Github picture" width={96} height={96} />
 </picture>
 
 <header class="py-24 relative w-full h-fit border-b space-y-4 md:space-y-8 gap-8 bg-foreground dark:bg-background">
-  <PlusIcon className="absolute z-10 -top-3 -left-3"/>
-  <PlusIcon className="absolute z-10 -bottom-7 md:-bottom-11 -right-3"/>
+  <PlusIcon class="absolute z-10 -top-3 -left-3"/>
+  <PlusIcon class="absolute z-10 -bottom-7 md:-bottom-11 -right-3"/>
   <BubbleBackground
     client:load
     interactive
@@ -19,18 +19,12 @@ import { Image } from "astro:assets";
   />
   <div class="h-12"></div>
   <h1
-    class="px-4 scroll-m-20 bg-clip-text text-transparent
-            bg-gradient-to-b from-white/90 to-white/50
-            text-center text-3xl md:text-5xl font-extrabold tracking-tight leading-10 md:leading-16
-            drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]"
+    class="glass-title"
   >
     Shaping your vision into reality
   </h1>
   <p
-    class="px-4 scroll-m-20 bg-clip-text text-transparent
-            bg-white/70 w-full m-auto max-w-xl
-            text-center text-md tracking-tight
-            drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-normal"
+    class="glass-text"
   >
     Self-taught software developer with strong communication, leadership, and
     problem-solving skills. Skilled in MERN stack, AI, and web platforms.
