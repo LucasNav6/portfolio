@@ -1,6 +1,7 @@
 ---
 import type { Experience } from "@/models/experiences";
 import { formatDate } from "@/utils/formatDate";
+import { diffBetweenDate } from "@/utils/diffBetweenDate";
 import Timeline from "../atoms/Timeline.astro";
 
 interface Props {
@@ -13,20 +14,30 @@ const { experiences = [] } = Astro.props;
 <Timeline>
   {experiences.map((exp, index) => (
     <li class="flex gap-4 animate-appear-content">
-      <div class="flex flex-col items-center">
-        <div class="w-4 h-4 rounded-full bg-primary mt-1" />
-        {index !== experiences.length - 1 && (
-          <div class="w-0.5 flex-1 bg-border my-2" />
-        )}
+      <!-- Año / Mes -->
+      <div class="flex flex-col items-end animate-appear-date">
+        <strong class="block text-lg md:text-3xl text-left font-bold text-neutral-500 dark:text-neutral-500">
+          {formatDate(exp.date.start).year}
+        </strong>
+        <small class="text-xs md:text-lg text-left font-bold text-neutral-500 dark:text-neutral-500">
+          {formatDate(exp.date.start).month.slice(0,5).toUpperCase()}
+        </small>
       </div>
 
+      <!-- Punto y línea vertical -->
+      <div class="flex flex-col items-center">
+        <div class="bg-neutral-500 w-4 h-4 rounded-full mt-1" />
+        <div class={`w-0.5 flex-1 bg-border mt-2 ${index === experiences.length - 1 ? 'hidden' : ''}`} />
+      </div>
+
+      <!-- Contenido -->
       <div class="flex-1 pb-8">
         <header class="space-y-1 mb-4">
           <strong class="text-md font-normal text-primary">{exp.position}</strong>
           <p class="text-md font-normal flex flex-col md:flex-row items-start md:items-center gap-1 md:gap-3">
             {exp.company}
             <small class="text-muted-foreground text-sm">
-              ({formatDate(exp.date.start)} - {exp.date.end === "Present" ? "Present" : formatDate(exp.date.end)})
+              ({diffBetweenDate(exp.date.start, exp.date.end)} {diffBetweenDate(exp.date.start, exp.date.end) > 1 ? "months" : "month"})
             </small>
           </p>
         </header>
