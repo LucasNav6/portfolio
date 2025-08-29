@@ -1,19 +1,48 @@
 ---
-import { RocketIcon } from "lucide-react";
+import { RocketIcon } from "@lucide/astro";
+import Header from "../molecules/Header.astro";
+import { Image } from "astro:assets";
+import CardProject from "../molecules/CardProject.astro";
 ---
 
-<section
-    class="px-4 md:px-14 pt-0 md:pt-4 pb-4 animate-appear-content"
->
-    <header class="flex items-center gap-3 mb-6 md:mb-12">
-        <RocketIcon />
-        <h2
-            class="scroll-m-20 text-lg md:text-2xl font-extrabold tracking-tight text-balance"
-        >
-            My projects
-        </h2>
-    </header>
-    <article>
+<section class="animate-appear-content">
+    <div class="px-4 md:px-14">
+        <Header title="Projects"><RocketIcon /></Header>
+    </div>
 
-    </article>
+    <div
+        class="columns-1 md:columns-2 gap-0 divide-x divide-border border-b border-border"
+    >
+        <CardProject
+            id="project-1"
+            title="Project title"
+            description="Project little description as scope"
+            imageSrc="https://mir-s3-cdn-cf.behance.net/projects/404/27e859135630187.Y3JvcCwyODc2LDIyNTAsMTA2LDA.png"
+            imageAlt="Project 1"
+        />
+
+        <CardProject
+            id="project-1"
+            title="Project title"
+            description="Project little description as scope"
+            imageSrc="https://cdn.dribbble.com/userupload/31885138/file/original-0e451ec865c9eea18a9e8da3a11add44.jpg?resize=400x0"
+            imageAlt="Project 1"
+        />
+        <CardProject
+            id="project-1"
+            title="Project title"
+            description="Project little description as scope"
+            imageSrc="https://cdn.dribbble.com/userupload/15878437/file/original-0f546b6b2790fb2cd74e0c0286312ab4.jpg?crop=0x0-1600x1200&format=webp&resize=400x300&vertical=center"
+            imageAlt="Project 1"
+        />
+        <CardProject
+            id="project-1"
+            title="Project title"
+            description="Project little description as scope"
+            imageSrc="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtTi9bGkHNSGrK1ZsRvsBHCr9I7HMl5MOitg&s"
+            imageAlt="Project 1"
+        />
+
+        <!-- más artículos -->
+    </div>
 </section>

@@ -184,3 +184,6 @@
   animation-range: entry 25% cover 30%;
 }
 
+.animate-appear-content-2 {
+  animation: reveal-content 0.6s ease-out both;
+}
