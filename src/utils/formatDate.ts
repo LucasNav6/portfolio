@@ -7,9 +7,18 @@
  */
 export function formatDate(
   date: Date | "Present",
-  options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'short' },
+  options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long' },
   locale: string = "en-US"
-): string {
-  if (date === 'Present') return date;
-  return date.toLocaleDateString(locale, options);
+): { month: string; year: string, isPresent: boolean } {
+  if (date === 'Present') return {
+    isPresent: true,
+    month: '',
+    year: ''
+  };
+  const localDate = date.toLocaleDateString(locale, options)
+  return {
+    isPresent: false,
+    month: localDate.split(' ')[0],
+    year: localDate.split(' ')[1]
+  };
 }
