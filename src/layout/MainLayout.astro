@@ -1,0 +1,65 @@
+---
+import { Button } from "@/components/atoms/button";
+import { ThemeButton } from "@/components/molecules/themeButton";
+import "@fontsource-variable/onest";
+import { HandIcon, HandMetal, SunIcon } from "lucide-react";
+---
+
+<body class="w-screen h-screen min-h-screen bg-background px-6">
+    <div class="m-auto w-full max-w-[780px] space-y-8 py-4">
+        <nav class="w-full flex justify-between items-center gap-4">
+            <p class="flex items-center gap-2 text-lg"
+                ><HandMetal strokeWidth={1.5} className="animate-wave" />Hi, I'm <strong>Lucas Navarro</strong></p
+            >
+            <div class="flex items-center gap-4">
+                <!-- <ThemeButton client:load /> -->
+                <Button variant="outline" size="icon"><SunIcon /></Button>
+                <Button variant="outline" size="icon"><SunIcon /></Button>
+            </div>
+        </nav>
+        <section class="border-t border-l border-r">
+            <slot />
+        </section>
+        <footer>footer</footer>
+    </div>
+</body>
+
+<style>
+    body {
+        font-family: "Onest Variable", sans-serif;
+    }
+
+  /* === Animaciones dinámicas === */
+  @keyframes wave {
+    0% {
+      transform: rotate(0deg);
+    }
+    10% {
+      transform: rotate(14deg);
+    }
+    20% {
+      transform: rotate(-8deg);
+    }
+    30% {
+      transform: rotate(14deg);
+    }
+    40% {
+      transform: rotate(-4deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+    60% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+
+  .animate-wave {
+    animation: wave 2s linear infinite; /* 2s de duración, se repite infinitamente */
+    transform-origin: 70% 70%; /* El punto de rotación de la mano */
+    display: inline-block; /* Para asegurar que el `transform-origin` funcione correctamente */
+  }
+</style>
