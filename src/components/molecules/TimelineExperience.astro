@@ -1,0 +1,48 @@
+---
+import type { Experience } from "@/models/experiences";
+import { formatDate } from "@/utils/formatDate";
+import Timeline from "../atoms/Timeline.astro";
+
+interface Props {
+  experiences?: Experience[];
+}
+
+const { experiences = [] } = Astro.props;
+---
+
+<Timeline>
+  {experiences.map((exp, index) => (
+    <li class="flex gap-4 animate-appear-content">
+      <div class="flex flex-col items-center">
+        <div class="w-4 h-4 rounded-full bg-primary mt-1" />
+        {index !== experiences.length - 1 && (
+          <div class="w-0.5 flex-1 bg-border my-2" />
+        )}
+      </div>
+
+      <div class="flex-1 pb-8">
+        <header class="space-y-1 mb-4">
+          <strong class="text-md font-normal text-primary">{exp.position}</strong>
+          <p class="text-md font-normal flex flex-col md:flex-row items-start md:items-center gap-1 md:gap-3">
+            {exp.company}
+            <small class="text-muted-foreground text-sm">
+              ({formatDate(exp.date.start)} - {exp.date.end === "Present" ? "Present" : formatDate(exp.date.end)})
+            </small>
+          </p>
+        </header>
+
+        <div class="space-y-2">
+          <p class="text-sm mb-2">{exp.roleDescription}</p>
+          <strong class="text-sm font-medium underline">Achievements:</strong>
+          {exp.achievements && exp.achievements.length > 0 && (
+            <ul class="list-disc marker:text-primary list-inside space-y-1 text-sm">
+              {exp.achievements.map((achievement) => (
+                <li>{achievement}</li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+    </li>
+  ))}
+</Timeline>

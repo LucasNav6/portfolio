@@ -1,0 +1,19 @@
+---
+interface Props {
+  class?: string;
+  orientation?: "horizontal" | "vertical";
+}
+
+const { class: className = "", orientation = "vertical" } = Astro.props;
+---
+
+<ol
+  role="list"
+  class:list={[
+    "flex",
+    orientation === "vertical" && "flex-col",
+    className,
+  ]}
+>
+  <slot />
+</ol>
