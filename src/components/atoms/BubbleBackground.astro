@@ -1,0 +1,153 @@
+---
+export interface Props {
+  interactive?: boolean;
+  colors?: {
+    first: string;
+    second: string;
+    third: string;
+    fourth: string;
+    fifth: string;
+    sixth: string;
+  };
+}
+
+const { 
+  interactive = false,
+  colors = {
+    first: '18,113,255',
+    second: '221,74,255',
+    third: '0,220,255',
+    fourth: '200,50,50',
+    fifth: '180,180,50',
+    sixth: '140,100,255',
+  }
+} = Astro.props;
+
+const styleVars = {
+  '--first-color': colors.first,
+  '--second-color': colors.second,
+  '--third-color': colors.third,
+  '--fourth-color': colors.fourth,
+  '--fifth-color': colors.fifth,
+  '--sixth-color': colors.sixth,
+};
+---
+
+<div 
+  class="absolute top-0 left-0 w-full h-full overflow-hidden"
+  style={styleVars}
+  data-interactive={interactive}
+>
+  <!-- Fondo base -->
+  <div class="absolute inset-0 bg-gradient-to-br from-black/90 to-black/80"></div>
+  
+  <!-- Contenedor de burbujas -->
+  <div class="bubble-wrapper absolute inset-0">
+    <!-- Burbuja 1 -->
+    <div class="bubble bubble-1 absolute rounded-full size-[80%] top-[10%] left-[10%] 
+                mix-blend-hard-light bg-[radial-gradient(circle_at_center,rgba(var(--first-color),0.8)_0%,rgba(var(--first-color),0)_50%)]">
+    </div>
+    
+    <!-- Burbuja 2 - rotación -->
+    <div class="bubble-container-2 absolute inset-0 flex justify-center items-center">
+      <div class="bubble bubble-2 rounded-full size-[80%] mix-blend-hard-light 
+                  bg-[radial-gradient(circle_at_center,rgba(var(--second-color),0.8)_0%,rgba(var(--second-color),0)_50%)]">
+      </div>
+    </div>
+    
+    <!-- Burbuja 3 - rotación inversa -->
+    <div class="bubble-container-3 absolute inset-0 flex justify-center items-center">
+      <div class="bubble bubble-3 absolute rounded-full size-[80%] 
+                  bg-[radial-gradient(circle_at_center,rgba(var(--third-color),0.8)_0%,rgba(var(--third-color),0)_50%)] 
+                  mix-blend-hard-light">
+      </div>
+    </div>
+    
+    <!-- Burbuja 4 -->
+    <div class="bubble bubble-4 absolute rounded-full size-[80%] top-[10%] left-[10%] 
+                mix-blend-hard-light bg-[radial-gradient(circle_at_center,rgba(var(--fourth-color),0.8)_0%,rgba(var(--fourth-color),0)_50%)] 
+                opacity-70">
+    </div>
+    
+    <!-- Burbuja 5 - grande -->
+    <div class="bubble-container-5 absolute inset-0 flex justify-center items-center">
+      <div class="bubble bubble-5 absolute rounded-full size-[160%] 
+                  bg-[radial-gradient(circle_at_center,rgba(var(--fifth-color),0.8)_0%,rgba(var(--fifth-color),0)_50%)] 
+                  mix-blend-hard-light">
+      </div>
+    </div>
+    
+    <!-- Burbuja interactiva (solo si interactive=true) -->
+    {interactive && (
+      <div class="bubble bubble-interactive absolute rounded-full size-full 
+                  mix-blend-hard-light bg-[radial-gradient(circle_at_center,rgba(var(--sixth-color),0.8)_0%,rgba(var(--sixth-color),0)_50%)] 
+                  opacity-70">
+      </div>
+    )}
+  </div>
+  
+  <slot />
+</div>
+
+<style>
+  .bubble-container {
+    isolation: isolate;
+  }
+  
+  .bubble-wrapper {
+    filter: blur(80px);
+  }
+  
+  /* Optimización: usar transformaciones 3D para aceleración GPU */
+  .bubble {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  
+  /* Animaciones CSS optimizadas */
+  @keyframes float-y {
+    0%, 100% { transform: translateY(-50px); }
+    50% { transform: translateY(50px); }
+  }
+  
+  @keyframes float-x {
+    0%, 100% { transform: translateX(-50px); }
+    50% { transform: translateX(50px); }
+  }
+  
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Aplicar animaciones a cada burbuja */
+  .bubble-1 {
+    animation: float-y 30s ease-in-out infinite;
+  }
+  
+  .bubble-container-2 {
+    animation: rotate 20s linear infinite;
+    transform-origin: calc(50% - 400px) 50%;
+  }
+  
+  .bubble-container-3 {
+    animation: rotate 40s linear infinite reverse;
+    transform-origin: calc(50% + 400px) 50%;
+  }
+  
+  .bubble-4 {
+    animation: float-x 40s ease-in-out infinite;
+  }
+  
+  .bubble-container-5 {
+    animation: rotate 20s linear infinite;
+    transform-origin: calc(50% - 800px) calc(50% + 200px);
+  }
+  
+  /* Media queries para reducir animaciones en dispositivos lentos */
+  @media (prefers-reduced-motion: reduce) {
+    .bubble, .bubble-container-2, .bubble-container-3, .bubble-container-5 {
+      animation-duration: 60s;
+    }
+  }
+</style>

@@ -1,32 +1,46 @@
 ---
 import { PlusIcon } from "@lucide/astro";
-import { BubbleBackground } from "../atoms/bubble";
-import SocialButtons from "../molecules/socialButton";
+import BubbleBackground from "../atoms/BubbleBackground.astro";
 import { Image } from "astro:assets";
+import SocialButtons from "../molecules/SocialButtons.astro";
 ---
 
 <picture class="absolute w-screen left-0 pt-10 flex items-center justify-center z-10">
-  <Image class="h-24 w-24 rounded-full overflow-hidde" src="https://avatars.githubusercontent.com/u/135039358?v=4" alt="Lucas Navarro Github picture" width={96} height={96} />
+  <Image class="h-24 w-24 rounded-full overflow-hidden" 
+         src="https://avatars.githubusercontent.com/u/135039358?v=4" 
+         alt="Lucas Navarro Github picture" 
+         width={96} 
+         height={96} />
 </picture>
 
 <header class="py-24 relative w-full h-fit border-b space-y-4 md:space-y-8 gap-8 bg-foreground dark:bg-background">
-  <PlusIcon class="absolute z-10 -top-3 -left-3"/>
-  <PlusIcon class="absolute z-10 -bottom-7 md:-bottom-11 -right-3"/>
+  <PlusIcon stroke-width={1} class="text-foreground/50 absolute z-10 -top-3 -left-3"/>
+  <PlusIcon stroke-width={1} class="text-foreground/50 absolute z-10 -bottom-7 md:-bottom-11 -right-3"/>
+  
   <BubbleBackground
-    client:visible
-    className="absolute w-full h-full inset-0 flex items-center justify-center"
+    interactive={true}
   />
+  
   <div class="h-12"></div>
-  <h1
-    class="glass-title-H1"
-  >
+  <h1 class="glass-title-H1">
     Shaping your vision into reality
   </h1>
-  <p
-    class="glass-text"
-  >
+  <p class="glass-text">
     Self-taught software developer with strong communication, leadership, and
     problem-solving skills. Skilled in MERN stack, AI, and web platforms.
   </p>
   <SocialButtons />
 </header>
+
+<script>
+  import { initInteractiveBubble } from '@/utils/interactive-bubble';
+  
+  // Solo inicializar si hay burbujas interactivas
+  const containers = document.querySelectorAll('[data-interactive="true"]');
+  containers.forEach(container => {
+    const cleanup = initInteractiveBubble(container);
+    
+    // Cleanup on page navigation
+    document.addEventListener('astro:before-swap', cleanup);
+  });
+</script>
