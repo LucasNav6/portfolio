@@ -26,7 +26,7 @@ const { experiences = [] } = Astro.props;
           <strong class="text-primary block text-lg md:text-3xl text-left font-bold z-20">
             {formatDate(exp.date.start).year}
           </strong>
-          <small class="text-xs md:text-lg text-left font-thin text-muted-foreground z-20 mt-1">
+          <small class="text-xs md:text-lg text-left z-20 mt-1">
             {formatDate(exp.date.start).month.slice(0,5).toUpperCase()}
           </small>
         </div>
@@ -38,7 +38,7 @@ const { experiences = [] } = Astro.props;
           <strong class="text-md font-normal text-primary">{exp.position}</strong>
           <p class="text-md font-normal flex flex-col md:flex-row items-start md:items-center gap-1 md:gap-3">
             {exp.company}
-            <small class="text-muted-foreground text-sm">
+            <small class="text-sm">
               {diffBetweenDate(exp.date.start, exp.date.end)}
             </small>
           </p>
