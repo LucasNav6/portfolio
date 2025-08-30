@@ -2,24 +2,36 @@
 interface Props {
   class?: string;
 }
-
-const { class: className = "" } = Astro.props;
 ---
 
-<ol
-  role="list"
-  class:list={[
-    "relative flex flex-col gap-0",
-    className,
-  ]}
-  style="
-    --color-muted: #a3a3a3;
-    --color-primary: #0ea5e9;
-  "
->
-  <!-- Línea muted que ocupa toda la altura del ul -->
+<ol role="list" class="relative flex flex-col gap-0">
   <div
-    class="absolute top-4 bottom-4 left-[1.125rem] w-0.5 bg-[var(--color-muted)] -z-10"
-  />
+    class="animate-line timeline-ray bg-primary/70 absolute w-0.5 left-[7.5px] -top-8 bottom-0"
+  >
+  </div>
   <slot />
 </ol>
+
+<style>
+  @keyframes timeline-line {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+
+  .animate-line {
+    transform-origin: top;
+    height: 100%;
+    animation: timeline-line 1 linear both;
+    animation-timeline: scroll(root block);
+    animation-range: contain;
+  }
+
+  .timeline-ray {
+    mask-image: linear-gradient(to bottom, black, black);
+    -webkit-mask-image: linear-gradient(to bottom, black, black);
+  }
+</style>
