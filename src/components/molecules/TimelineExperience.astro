@@ -39,7 +39,7 @@ const { experiences = [] } = Astro.props;
           <p class="text-md font-normal flex flex-col md:flex-row items-start md:items-center gap-1 md:gap-3">
             {exp.company}
             <small class="text-muted-foreground text-sm">
-              ({diffBetweenDate(exp.date.start, exp.date.end)} {diffBetweenDate(exp.date.start, exp.date.end) > 1 ? "months" : "month"})
+              {diffBetweenDate(exp.date.start, exp.date.end)}
             </small>
           </p>
         </header>

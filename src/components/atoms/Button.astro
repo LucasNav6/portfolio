@@ -1,26 +1,27 @@
 ---
 interface Props {
   variant?: "primary" | "secondary";
-  size?: "default" | "sm" | "lg";
+  size?: "default" | "sm" | "lg" | "icon";
   href?: string;
 }
 
 const { variant = "primary", size = "default", href } = Astro.props;
 
 const base =
-  "inline-flex items-center justify-center rounded-full font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
+  "inline-flex items-center justify-center rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none";
 
 const variants = {
   primary:
-    "bg-primary text-primary-foreground hover:bg-primary/90",
+    "cursor-pointer bg-primary text-primary-foreground hover:bg-primary/90",
   secondary:
-    "flex items-center gap-2 bg-background text-foreground border-[1px] border-input hover:bg-accent hover:text-accent-foreground font-light",
+    "cursor-pointer flex items-center gap-2 bg-background text-foreground border-[2px] border-input hover:border-muted-foreground hover:bg-accent hover:text-accent-foreground font-light",
 };
 
 const sizes = {
   sm: "h-8 px-3 text-sm",
   default: "h-10 px-5 text-sm",
   lg: "h-12 px-6 text-base",
+  icon: "h-10 w-10 p-1",
 };
 
 const classes = `${base} ${variants[variant]} ${sizes[size]}`;
