@@ -11,23 +11,23 @@ interface Props {
 const { experiences = [] } = Astro.props;
 ---
 
-<Timeline>
+<Timeline class="mt-6 md:mt-12">
   {experiences.map((exp, index) => (
-    <li class="flex gap-4 animate-appear-content">
+    <li class="flex gap-4">
+
+      <!-- Punto y línea vertical -->
+      <div class="flex flex-col items-center">
+        <div class="bg-neutral-500 w-4 h-4 rounded-full mt-1" />
+        <div class={`w-0.5 flex-1 bg-border mt-2 ${index === experiences.length - 1 ? 'hidden' : ''}`} />
+      </div>
       <!-- Año / Mes -->
-      <div class="flex flex-col items-end animate-appear-date w-10 md:w-20">
+      <div class="flex flex-col items-end w-10 md:w-20">
         <strong class="block text-lg md:text-3xl text-left font-bold text-neutral-500 dark:text-neutral-500">
           {formatDate(exp.date.start).year}
         </strong>
         <small class="text-xs md:text-lg text-left font-bold text-neutral-500 dark:text-neutral-500">
           {formatDate(exp.date.start).month.slice(0,5).toUpperCase()}
         </small>
-      </div>
-
-      <!-- Punto y línea vertical -->
-      <div class="flex flex-col items-center">
-        <div class="bg-neutral-500 w-4 h-4 rounded-full mt-1" />
-        <div class={`w-0.5 flex-1 bg-border mt-2 ${index === experiences.length - 1 ? 'hidden' : ''}`} />
       </div>
 
       <!-- Contenido -->

@@ -1,14 +1,18 @@
 ---
 interface SectionHeaderProps {
   title: string;
+  description: string;
 }
 
-const { title } = Astro.props as SectionHeaderProps;
+const { title, description } = Astro.props;
 ---
 
-<header class="flex items-center mb-4">
-  <slot />
-  <h2 class="glass-title-H2">
-    {title}
-  </h2>
+<header class="mb-4 flex gap-4 w-full max-w-sm">
+  <picture class="flex items-start mt-1">
+    <slot />
+  </picture>
+  <aside class="flex flex-col gap-1">
+    <h2 class="w-full scroll-m-20 text-2xl font-extrabold tracking-tight text-balance">{title}</h2>
+    <small class="w-full text-muted-foreground text-sm">{description}</small>
+  </aside>
 </header>
