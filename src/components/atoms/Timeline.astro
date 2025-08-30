@@ -1,19 +1,25 @@
 ---
 interface Props {
   class?: string;
-  orientation?: "horizontal" | "vertical";
 }
 
-const { class: className = "", orientation = "vertical" } = Astro.props;
+const { class: className = "" } = Astro.props;
 ---
 
 <ol
   role="list"
   class:list={[
-    "flex",
-    orientation === "vertical" && "flex-col",
+    "relative flex flex-col gap-0",
     className,
   ]}
+  style="
+    --color-muted: #a3a3a3;
+    --color-primary: #0ea5e9;
+  "
 >
+  <!-- Línea muted que ocupa toda la altura del ul -->
+  <div
+    class="absolute top-4 bottom-4 left-[1.125rem] w-0.5 bg-[var(--color-muted)] -z-10"
+  />
   <slot />
 </ol>
