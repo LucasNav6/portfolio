@@ -17,12 +17,12 @@ const { experiences = [] } = Astro.props;
 
       <!-- Punto y línea vertical -->
       <div class="flex flex-col items-center">
-        <div class="bg-primary w-4 h-4 rounded-full sticky top-12 z-10 mt-2 mb-14" />
+        <div class:list={["bg-primary w-4 h-4 rounded-full top-12 z-10 mt-2 mb-20", (index === experiences.length -1) ? "" : "sticky"]} />
       </div>
       
       <!-- Año / Mes -->
       <div class="flex flex-col items-start w-10 md:w-20">
-        <div class="sticky top-10 mb-6 md:mb-4">
+        <div class:list={["top-10 mb-6 md:mb-10", (index === experiences.length -1) ? "" : "sticky"]}>
           <strong class="text-primary block text-lg md:text-3xl text-left font-bold z-20">
             {formatDate(exp.date.start).year}
           </strong>

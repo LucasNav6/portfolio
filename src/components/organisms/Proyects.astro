@@ -5,13 +5,17 @@ import { Image } from "astro:assets";
 import CardProject from "../molecules/CardProject.astro";
 ---
 
-<section class="animate-appear-content">
-    <div class="px-4 md:px-14">
-        <Header title="Projects"><RocketIcon /></Header>
+<section class="animate-appear-content mt-6">
+    <div class="px-1 md:px-11">
+        <Header title="Peek at What projects I’ve Been Building" description="Take a look at the latest things I’ve shipped—code, demos, and stories behind ">
+            <div class="bg-primary  p-2 rounded-full">
+                <RocketIcon class="text-primary-foreground" />
+            </div>
+        </Header>
     </div>
 
     <div
-        class="columns-1 md:columns-2 gap-0 divide-x divide-border border-b border-border"
+        class="z-50 bg-card columns-1 md:columns-2 gap-0 divide-x divide-border border-b border-border"
     >
         <CardProject
             id="project-1"
