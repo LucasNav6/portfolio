@@ -43,7 +43,7 @@
 }
 
 :root {
-  --background: #f6f8ff;
+  --background: #fff;
   --foreground: oklch(0.15 0 0);
   --card: oklch(0.97 0 270);
   --card-foreground: var(--foreground);
@@ -80,9 +80,9 @@
 }
 
 .dark {
-  --background: oklch(0.15 0 260);
+  --background: #000;
   --foreground: oklab(87.957% 0.00044 0.00995);
-  --card: oklch(0.2 0 260);
+  --card: #0a0a0a;
   --card-foreground: var(--foreground);
   --popover: var(--card);
   --popover-foreground: var(--foreground);
@@ -90,13 +90,13 @@
   --primary-foreground: oklch(0.15 0 0);
   --secondary: oklch(0.25 0 260);
   --secondary-foreground: var(--foreground);
-  --accent: oklch(0.35 0 260);
+  --accent: #1f1f1f;
   --accent-foreground: var(--foreground);
   --muted: oklch(0.28 0 260);
   --muted-foreground: oklch(0.75 0.02 270);
   --destructive: oklch(0.55 0.22 23);
   --destructive-foreground: var(--foreground);
-  --border: oklch(0.32 0 260);
+  --border: #2e2e2e;
   --input: var(--border);
   --ring: var(--primary);
   --sidebar: oklch(0.18 0 260);
@@ -205,4 +205,24 @@
 
 .animate-appear-content-2 {
   animation: reveal-content 0.6s ease-out both;
+}
+
+.bubble-container {
+  contain: layout style paint;
+}
+
+@media (max-width: 768px) {
+  .bubble-wrapper {
+    filter: blur(40px); /* Reducir blur en móviles */
+  }
+  
+  .bubble {
+    animation-duration: 60s; /* Animaciones más lentas */
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubble, .bubble-container-2, .bubble-container-3, .bubble-container-5 {
+    animation: none !important;
+  }
 }

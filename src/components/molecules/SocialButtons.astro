@@ -1,0 +1,25 @@
+---
+import Button from "../atoms/Button.astro";
+import Linkedin from "@/icons/Linkedin.astro";
+import Github from "@/icons/Github.astro";
+---
+
+<div class="absolute w-full flex gap-4 justify-center pt-5">
+  <Button 
+    variant="secondary" 
+    aria-label="linkedin link"
+    href="https://www.linkedin.com/in/lucasnav/"
+  >
+    <Linkedin class="size-4" />
+    LinkedIn
+  </Button>
+
+  <Button 
+    variant="secondary" 
+    aria-label="github link"
+    href="https://github.com/LucasNav6"
+  >
+    <Github class="size-4" />
+    GitHub
+  </Button>
+</div>
