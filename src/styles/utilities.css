@@ -14,3 +14,7 @@
 .glass-text {
     @apply px-4 scroll-m-20 bg-clip-text text-transparent bg-white/70 w-full m-auto max-w-xl text-center tracking-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] font-normal
 }
+
+.section {
+    @apply w-full h-fit px-4 md:px-14
+}

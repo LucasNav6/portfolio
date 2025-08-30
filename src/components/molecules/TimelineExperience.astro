@@ -11,27 +11,29 @@ interface Props {
 const { experiences = [] } = Astro.props;
 ---
 
-<Timeline>
+<Timeline class="mt-6 md:mt-20">
   {experiences.map((exp, index) => (
-    <li class="flex gap-4 animate-appear-content">
-      <!-- Año / Mes -->
-      <div class="flex flex-col items-end animate-appear-date w-10 md:w-20">
-        <strong class="block text-lg md:text-3xl text-left font-bold text-neutral-500 dark:text-neutral-500">
-          {formatDate(exp.date.start).year}
-        </strong>
-        <small class="text-xs md:text-lg text-left font-bold text-neutral-500 dark:text-neutral-500">
-          {formatDate(exp.date.start).month.slice(0,5).toUpperCase()}
-        </small>
-      </div>
+    <li class={`flex gap-4 animate-appear-content`}>
 
       <!-- Punto y línea vertical -->
       <div class="flex flex-col items-center">
-        <div class="bg-neutral-500 w-4 h-4 rounded-full mt-1" />
-        <div class={`w-0.5 flex-1 bg-border mt-2 ${index === experiences.length - 1 ? 'hidden' : ''}`} />
+        <div class:list={["bg-primary w-4 h-4 rounded-full top-12 z-10 mt-2 mb-20", (index === experiences.length -1) ? "" : "sticky"]} />
+      </div>
+      
+      <!-- Año / Mes -->
+      <div class="flex flex-col items-start w-10 md:w-20">
+        <div class:list={["top-10 mb-6 md:mb-10", (index === experiences.length -1) ? "" : "sticky"]}>
+          <strong class="text-primary block text-lg md:text-3xl text-left font-bold z-20">
+            {formatDate(exp.date.start).year}
+          </strong>
+          <small class="text-xs md:text-lg text-left font-thin text-muted-foreground z-20 mt-1">
+            {formatDate(exp.date.start).month.slice(0,5).toUpperCase()}
+          </small>
+        </div>
       </div>
 
       <!-- Contenido -->
-      <div class="flex-1 pb-8">
+      <div class="flex-1 pb-8 ml-5">
         <header class="space-y-1 mb-4">
           <strong class="text-md font-normal text-primary">{exp.position}</strong>
           <p class="text-md font-normal flex flex-col md:flex-row items-start md:items-center gap-1 md:gap-3">

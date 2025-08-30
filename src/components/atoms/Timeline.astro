@@ -1,19 +1,37 @@
 ---
 interface Props {
   class?: string;
-  orientation?: "horizontal" | "vertical";
 }
-
-const { class: className = "", orientation = "vertical" } = Astro.props;
 ---
 
-<ol
-  role="list"
-  class:list={[
-    "flex",
-    orientation === "vertical" && "flex-col",
-    className,
-  ]}
->
+<ol role="list" class="relative flex flex-col gap-0">
+  <div
+    class="animate-line rounded-full timeline-ray bg-gradient-to-b from-muted to-primary/70 absolute w-0.5 left-[7.5px] top-0 md:-top-8 bottom-0"
+  >
+  </div>
   <slot />
 </ol>
+
+<style>
+  @keyframes timeline-line {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1.5);
+    }
+  }
+
+  .animate-line {
+    transform-origin: top;
+    height: 100%;
+    animation: timeline-line 1 linear both;
+    animation-timeline: scroll(root block);
+    animation-range: contain;
+  }
+
+  .timeline-ray {
+    mask-image: linear-gradient(to bottom, black, black);
+    -webkit-mask-image: linear-gradient(to bottom, black, black);
+  }
+</style>

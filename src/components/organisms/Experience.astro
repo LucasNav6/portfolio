@@ -6,12 +6,11 @@ import { EXPERIENCE_TIMELINE } from "@/models/experiences";
 import TimelineExperience from "../molecules/TimelineExperience.astro";
 ---
 
-<div class="px-4 md:px-14 pt-4 md:pt-12 animate-appear-content">
-    <Header title="My experiencies"><BriefcaseBusinessIcon /></Header>
-    <section class="w-full flex gap-10">
-        <TimelineExperience experiences={EXPERIENCE_TIMELINE} />
-        <aside class="w-40 sticky top-8 self-start hidden md:block pt-8">
-            <ComemetExperience client:load />
-        </aside>
-    </section>
+<div class="section pt-6 md:pt-12">
+    <Header
+        title="Where I’ve left fingerprints"
+        description="Stages where I grew—and left measurable impact. A tour of the organizations that trusted me and the victories we delivered together."
+        ><BriefcaseBusinessIcon /></Header
+    >
+    <TimelineExperience experiences={EXPERIENCE_TIMELINE} />
 </div>
