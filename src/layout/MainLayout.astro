@@ -1,65 +1,73 @@
 ---
-import { Button } from "@/components/atoms/button";
-import { ThemeButton } from "@/components/molecules/themeButton";
+import Button from "@/components/atoms/Button.astro";
 import "@fontsource-variable/onest";
-import { HandIcon, HandMetal, SunIcon } from "lucide-react";
+import { HandMetalIcon } from "@lucide/astro";
 ---
 
-<body class="w-screen h-screen min-h-screen bg-background px-6">
+<html lang="en">
+  <body class="w-screen h-screen min-h-screen bg-background px-6 font-sans">
     <div class="m-auto w-full max-w-[780px] space-y-8 py-4">
-        <nav class="w-full flex justify-between items-center gap-4">
-            <p class="flex items-center gap-2 text-lg"
-                ><HandMetal strokeWidth={1.5} className="animate-wave" />Hi, I'm <strong>Lucas Navarro</strong></p
-            >
-            <div class="flex items-center gap-4">
-                <!-- <ThemeButton client:load /> -->
-                <Button variant="outline" size="icon"><SunIcon /></Button>
-                <Button variant="outline" size="icon"><SunIcon /></Button>
-            </div>
-        </nav>
-        <section class="bg-card border-[1px] border-t border-l border-r">
-            <slot />
-        </section>
-        <footer>footer</footer>
+      <!-- Navbar -->
+      <nav class="w-full flex justify-between items-center gap-4">
+        <p class="flex items-center gap-2 text-lg">
+          <HandMetalIcon stroke-width={2} class="animate-wave size-7" aria-hidden="true" />
+          Hi, I'm 
+          <strong class="underline-animate">Lucas Navarro</strong>
+        </p>
+        <div class="flex items-center gap-3">
+          <Button variant="secondary" size="icon" aria-label="Cambiar de idioma a español">Es</Button>
+        </div>
+      </nav>
+
+      <!-- Content -->
+      <section class="bg-card border border-b-0">
+        <slot />
+      </section>
+
+      <!-- Footer -->
+      <footer class="text-sm text-muted-foreground text-center">
+        <!-- TODO: Implement real footer -->
+        footer
+      </footer>
     </div>
-</body>
+  </body>
+</html>
 
 <style>
-    body {
-        font-family: "Onest Variable", sans-serif;
+  @keyframes underline-grow {
+    from {
+      background-size: 0% 2px;
     }
-
-  /* === Animaciones dinámicas === */
-  @keyframes wave {
-    0% {
-      transform: rotate(0deg);
-    }
-    10% {
-      transform: rotate(14deg);
-    }
-    20% {
-      transform: rotate(-8deg);
-    }
-    30% {
-      transform: rotate(14deg);
-    }
-    40% {
-      transform: rotate(-4deg);
-    }
-    50% {
-      transform: rotate(10deg);
-    }
-    60% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(0deg);
+    to {
+      background-size: 100% 2px;
     }
   }
 
+  .underline-animate {
+    position: relative;
+    display: inline-block;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 2px;
+    --duration: 1.2s;
+    animation: underline-grow var(--duration) ease forwards;
+  }
+
+  @keyframes wave {
+    0% { transform: rotate(0deg); }
+    10% { transform: rotate(14deg); }
+    20% { transform: rotate(-8deg); }
+    30% { transform: rotate(14deg); }
+    40% { transform: rotate(-4deg); }
+    50% { transform: rotate(10deg); }
+    60% { transform: rotate(0deg); }
+    100% { transform: rotate(0deg); }
+  }
+
   .animate-wave {
-    animation: wave 2s linear infinite; /* 2s de duración, se repite infinitamente */
-    transform-origin: 70% 70%; /* El punto de rotación de la mano */
-    display: inline-block; /* Para asegurar que el `transform-origin` funcione correctamente */
+    animation: wave 2s ease-in-out infinite;
+    transform-origin: 70% 70%;
+    display: inline-block;
   }
 </style>
