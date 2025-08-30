@@ -153,7 +153,7 @@
 }
 @keyframes reveal-content {
   from {
-    opacity: 1;
+    opacity: .5;
     transform: translateY(15vh);
   }
   to {

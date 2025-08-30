@@ -13,7 +13,7 @@ const { experiences = [] } = Astro.props;
 
 <Timeline class="mt-6 md:mt-20">
   {experiences.map((exp, index) => (
-    <li class={`flex gap-4 ` + (index !== 0 && "animate-appear-content")}>
+    <li class={`flex gap-4 animate-appear-content`}>
 
       <!-- Punto y línea vertical -->
       <div class="flex flex-col items-center">
@@ -22,7 +22,7 @@ const { experiences = [] } = Astro.props;
       
       <!-- Año / Mes -->
       <div class="flex flex-col items-start w-10 md:w-20">
-        <div class="sticky top-10 mb-4">
+        <div class="sticky top-10 mb-6 md:mb-4">
           <strong class="text-primary block text-lg md:text-3xl text-left font-bold z-20">
             {formatDate(exp.date.start).year}
           </strong>
