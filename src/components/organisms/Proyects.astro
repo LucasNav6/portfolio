@@ -1,52 +1,33 @@
 ---
 import { RocketIcon } from "@lucide/astro";
 import Header from "../molecules/Header.astro";
-import { Image } from "astro:assets";
 import CardProject from "../molecules/CardProject.astro";
+import { PROJECTS } from "@/models/projects";
 ---
 
-<section class="animate-appear-content mt-6">
-    <div class="px-1 md:px-11">
-        <Header title="Peek at What projects I’ve Been Building" description="Take a look at the latest things I’ve shipped—code, demos, and stories behind ">
-            <div class="bg-primary  p-2 rounded-full">
-                <RocketIcon class="text-primary-foreground" />
-            </div>
-        </Header>
-    </div>
-
-    <div
-        class="z-50 bg-card columns-1 md:columns-2 gap-0 divide-x divide-border border-b border-border"
+<section class="animate-appear-content mt-6 bg-card">
+  <div class="px-1 md:px-11">
+    <Header
+      title="Peek at What projects I’ve Been Building"
+      description="Take a look at the latest things I’ve shipped—code, demos, and stories behind"
     >
-        <CardProject
-            id="project-1"
-            title="Project title"
-            description="Project little description as scope"
-            imageSrc="https://mir-s3-cdn-cf.behance.net/projects/404/27e859135630187.Y3JvcCwyODc2LDIyNTAsMTA2LDA.png"
-            imageAlt="Project 1"
-        />
+      <div class="bg-primary p-2 rounded-full">
+        <RocketIcon class="text-primary-foreground" />
+      </div>
+    </Header>
+  </div>
 
+  <div class="grid grid-cols-1 md:grid-cols-2 border-y">
+    {
+      PROJECTS.map((project, i) => (
         <CardProject
-            id="project-1"
-            title="Project title"
-            description="Project little description as scope"
-            imageSrc="https://cdn.dribbble.com/userupload/31885138/file/original-0e451ec865c9eea18a9e8da3a11add44.jpg?resize=400x0"
-            imageAlt="Project 1"
+          id={project.title.toLowerCase().replace(/\s+/g, "-")}
+          title={project.title}
+          description={project.description}
+          imageSrc={project.image ?? undefined}
+          imageAlt={project.title}
         />
-        <CardProject
-            id="project-1"
-            title="Project title"
-            description="Project little description as scope"
-            imageSrc="https://cdn.dribbble.com/userupload/15878437/file/original-0f546b6b2790fb2cd74e0c0286312ab4.jpg?crop=0x0-1600x1200&format=webp&resize=400x300&vertical=center"
-            imageAlt="Project 1"
-        />
-        <CardProject
-            id="project-1"
-            title="Project title"
-            description="Project little description as scope"
-            imageSrc="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtTi9bGkHNSGrK1ZsRvsBHCr9I7HMl5MOitg&s"
-            imageAlt="Project 1"
-        />
-
-        <!-- más artículos -->
-    </div>
+      ))
+    }
+  </div>
 </section>

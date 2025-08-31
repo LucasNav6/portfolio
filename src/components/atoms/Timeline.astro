@@ -6,32 +6,36 @@ interface Props {
 
 <ol role="list" class="relative flex flex-col gap-0">
   <div
-    class="animate-line rounded-full timeline-ray bg-gradient-to-b from-muted to-primary/70 absolute w-0.5 left-[7.5px] top-0 md:-top-8 bottom-0"
-  >
-  </div>
+    id="timeline-line"
+    class="rounded-full timeline-ray bg-gradient-to-b from-muted to-primary/70 absolute w-0.5 left-[7.5px] top-0"
+  ></div>
   <slot />
 </ol>
 
+<script>
+  const line = document.getElementById("timeline-line");
+
+  const updateLine = () => {
+    const windowHeight = window.innerHeight;
+    const rect = line.parentElement.getBoundingClientRect();
+    
+    // distancia desde el top del viewport hasta el top del ol
+    const scrollProgress = (windowHeight / 2 - rect.top) / rect.height;
+    
+    // limitar entre 0 y 1
+    const scaleY = Math.min(Math.max(scrollProgress, 0), 1) * 1.035;
+
+    line.style.transform = `scaleY(${scaleY})`;
+  };
+
+  window.addEventListener("scroll", updateLine);
+  window.addEventListener("resize", updateLine);
+  updateLine(); // inicial
+</script>
+
 <style>
-  @keyframes timeline-line {
-    from {
-      transform: scaleY(0);
-    }
-    to {
-      transform: scaleY(1.5);
-    }
-  }
-
-  .animate-line {
-    transform-origin: top;
-    height: 100%;
-    animation: timeline-line 1 linear both;
-    animation-timeline: scroll(root block);
-    animation-range: contain;
-  }
-
-  .timeline-ray {
-    mask-image: linear-gradient(to bottom, black, black);
-    -webkit-mask-image: linear-gradient(to bottom, black, black);
-  }
+.timeline-ray {
+  transform-origin: top;
+  height: 100%;
+}
 </style>
