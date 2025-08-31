@@ -48,11 +48,14 @@ const { experiences = [] } = Astro.props;
           <p class="text-sm mb-2">{exp.roleDescription}</p>
           <strong class="text-sm font-medium underline">Achievements:</strong>
           {exp.achievements && exp.achievements.length > 0 && (
-            <ul class="list-disc marker:text-primary list-inside space-y-1 text-sm">
-              {exp.achievements.map((achievement) => (
-                <li>{achievement}</li>
-              ))}
-            </ul>
+            <ul class="flex flex-col space-y-1 text-sm mt-2">
+            {exp.achievements.map((achievement) => (
+              <li class="flex justify-between items-start gap-4">
+                <span class="ml-2 text-primary list-marker">•</span>
+                <span class="flex-1">{achievement}</span>
+              </li>
+            ))}
+          </ul>
           )}
         </div>
       </div>

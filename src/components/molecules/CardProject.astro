@@ -1,5 +1,6 @@
 ---
 import { ArrowRight } from "@lucide/astro";
+import { Image } from "astro:assets";
 
 interface Props {
   id: string;
@@ -13,22 +14,22 @@ const { id, title, description, imageSrc, imageAlt } = Astro.props;
 
 <article
   id={id}
-  class="group break-inside-avoid p-4 border-t border-border transition-colors duration-300 hover:bg-input/50 cursor-pointer animate-card-appear "
+  class="group break-inside-avoid p-4 border border-border transition-colors duration-300 hover:bg-input/50 hover:border-muted-foreground/80 cursor-pointer animate-card-appear "
 >
-  <header class="font-bold mb-2 flex items-center justify-between">
-    <span>{title}</span>
+  <header class="font-bold mb-2 flex items-center justify-between gap-2">
+    <span class="w-full text-balance">{title}</span>
     <ArrowRight
       class="inline-block ml-2 mb-1 transition-transform duration-300 group-hover:-rotate-45"
     />
   </header>
 
-  <small class="block mb-2">{description}</small>
+  <small class="block mb-4">{description}</small>
 
   {imageSrc && (
-    <img
+    <Image
       src={imageSrc}
       alt={imageAlt ?? title}
-      class="w-full rounded"
+      class="w-full"
       width="800"
       height="400"
     />

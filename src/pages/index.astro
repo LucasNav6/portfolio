@@ -1,0 +1,45 @@
+---
+import Experience from "@/components/organisms/Experience.astro";
+import Hero from "@/components/organisms/Hero.astro";
+import Proyects from "@/components/organisms/Proyects.astro";
+import AboutMe from "@/components/organisms/AboutMe.astro";
+import MainLayout from "@/layout/MainLayout.astro";
+import MetadataLayout from "@/layout/MetadataLayout.astro";
+import "@/styles/global.css";
+---
+
+<MetadataLayout title="Lucas Navarro" description="Lucas Navarro`s porfolio" >
+    <MainLayout>
+        <Hero />
+        <Experience />
+        <Proyects />
+        <AboutMe />
+    </MainLayout>
+</MetadataLayout>
+
+<script is:inline>
+    const getThemePreference = () => {
+        if (
+            typeof localStorage !== "undefined" &&
+            localStorage.getItem("theme")
+        ) {
+            return localStorage.getItem("theme");
+        }
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+    };
+    const isDark = getThemePreference() === "dark";
+    document.documentElement.classList[isDark ? "add" : "remove"]("dark");
+
+    if (typeof localStorage !== "undefined") {
+        const observer = new MutationObserver(() => {
+            const isDark = document.documentElement.classList.contains("dark");
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+        });
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ["class"],
+        });
+    }
+</script>
