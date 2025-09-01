@@ -1,8 +1,12 @@
 ---
-import { PlusIcon } from "@lucide/astro";
 import BubbleBackground from "../atoms/BubbleBackground.astro";
 import { Image } from "astro:assets";
 import SocialButtons from "../molecules/SocialButtons.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+import Plus from "@/icons/Plus.astro";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <picture
@@ -14,17 +18,19 @@ import SocialButtons from "../molecules/SocialButtons.astro";
     alt="Profile Lucas Navarro, software developer"
     width={96}
     height={96}
+    loading="lazy"
+    decoding="async"
   />
 </picture>
 
 <header
   class="py-24 relative w-full h-fit border-b space-y-4 md:space-y-8 gap-8 bg-foreground dark:bg-background"
 >
-  <PlusIcon
+  <Plus
     stroke-width={2}
     class="text-foreground/80 absolute z-10 -top-3 -left-3"
   />
-  <PlusIcon
+  <Plus
     stroke-width={2}
     class="text-foreground/80 absolute z-10 -bottom-7 md:-bottom-11 -right-3"
   />
@@ -32,23 +38,20 @@ import SocialButtons from "../molecules/SocialButtons.astro";
   <BubbleBackground interactive={true} />
 
   <div class="h-12"></div>
-  <h1 class="glass-title-H1">Shaping your vision into reality</h1>
-  <p class="glass-text">
-    Self-taught software developer with strong communication, leadership, and
-    problem-solving skills. Skilled in MERN stack, AI, and web platforms.
-  </p>
+  <h1 class="glass-title-H1 text-balance">{t("hero.title")}</h1>
+  <p class="glass-text">{t("hero.subtitle")}</p>
   <SocialButtons />
 </header>
 
 <script>
   import { initInteractiveBubble } from "@/utils/interactive-bubble";
 
-  // Solo inicializar si hay burbujas interactivas
   const containers = document.querySelectorAll('[data-interactive="true"]');
   containers.forEach((container) => {
     const cleanup = initInteractiveBubble(container);
 
-    // Cleanup on page navigation
-    document.addEventListener("astro:before-swap", cleanup);
+    document.addEventListener("astro:before-swap", () => {
+      if (cleanup) cleanup();
+    });
   });
 </script>

@@ -54,12 +54,4 @@ export const PROJECTS: Project[] = [
         image: "/images/projects/socio-sostenible.jpg",
         tags: ["React", "Redux", "Firebase", "Material-UI"],
     },
-    {
-        title: "Runo CLI",
-        description:
-            "Figma-to-code automation CLI bridging the gap between design and development, improving product quality by streamlining collaboration across teams that speak different 'languages'.",
-        link: "",
-        image: null,
-        tags: ["React", "Redux", "Firebase", "Material-UI"],
-    },
 ];

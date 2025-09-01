@@ -1,69 +1,74 @@
 ---
-import { UserIcon } from "@lucide/astro";
+import UserIcon from "@/icons/UserIcon.astro";
 import Header from "../molecules/Header.astro";
 import { Image } from "astro:assets";
-import SocialButtons from "../molecules/SocialButtons.astro";
 import Button from "../atoms/Button.astro";
 import Linkedin from "@/icons/Linkedin.astro";
 import Github from "@/icons/Github.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<section class="animate-appear-content mt-6 md:mt-12 bg-card z-10 border-b">
-  <div class="px-1 md:px-11">
-    <Header
-      title="About Me"
-      description="Full-stack developer passionate about creating innovative AI-driven solutions"
-    >
-      <UserIcon class="animate" />
-    </Header>
-  </div>
+<section class="animate-appear-content bg-card z-10 space-y-12 px-6 md:px-12">
+  <Header title={t("about-me.title")} description={t("about-me.description")}>
+    <UserIcon />
+  </Header>
 
-  <div class="flex flex-col md:flex-row items-center md:items-start gap-6 px-1 md:px-11 md:gap-12 text-sm leading-relaxed">
-    <picture class="rounded-xl overflow-hidden order-1 object-cover w-[200px] md:w-[720px] h-full p-1 md:order-2 rotate-3 lg:p-2 aspect-square bg-black/20 dark:bg-yellow-500/5 ring-1 ring-black/70 dark:ring-white/20">
+  <div
+    class="flex flex-col-reverse md:flex-row-reverse items-center md:items-start gap-12 text-sm leading-relaxed"
+  >
+    <picture
+      class="picture-square"
+    >
       <Image
-        src="https://media.licdn.com/dms/image/v2/D4D03AQGsq73DuIu0vA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1713716662900?e=1759363200&v=beta&t=RL40SrhkXn9SP3nHjHJG1w-TAylqdma_lB-knSJRmmY"
+        src="https://media.licdn.com/dms/image/v2/D4D03AQGsq73DuIu0vA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1713716662900?e=1759363200&v=beta&t=mYbEBkS1P4DZFE_g6CFWzGm0DpIz_Jf4R3ud5gch_pc"
         alt="Picture of Lucas Navarro"
-        class="rounded-lg"
-        width="600"
-        height="600"
+        class="rounded-lg w-full h-full object-cover"
+        width="200"
+        height="200"
+        loading="lazy"
       />
     </picture>
-    
-    <article class="max-w-none px-4 md:px-11">
-      <h2 class="text-xl font-semibold mb-3">Lucas Navarro</h2>      
-      <p class="mb-4">
-        <strong class="text-primary">+4 years</strong> in software development, I specialize in creating 
-        innovative SaaS solutions by integrating AI and web technologies. At Lilab, 
-        I've contributed to both internal and B2B projects, streamlining workflows 
-        and optimizing collaboration between design and frontend teams.
-      </p>
-      
-      <p class="mb-4">
-        Currently pursuing <strong class="text-primary">Information Systems Engineering</strong> at Universidad 
-        Tecnológica Nacional, with expertise in modular architectures, CI/CD pipelines, 
-        and modern tools like React and Redux. I'm passionate about leveraging design 
-        systems and MCP expertise to drive impactful results while fostering collaborative 
-        and inclusive development environments.
-      </p>
-      <footer class="flex gap-2 mb-8">
+
+    <article class="space-y-5">
+      <div set:html={t("about-me.text")} />
+      <footer class="flex gap-2">
         <Button
-       variant="secondary" 
-       aria-label="View my linkedin profile (external link)"
-       href="https://www.linkedin.com/in/lucasnav/"
-     >
-       <Linkedin class="size-4" />
-       LinkedIn
-     </Button>
-   
-     <Button 
-       variant="secondary" 
-       aria-label="View my GitHub profile (external link)"
-       href="https://github.com/LucasNav6"
-     >
-       <Github class="size-4" />
-       GitHub
-     </Button>
-       </footer>
+          variant="secondary"
+          aria-label="View my linkedin profile (external link)"
+          href={t("about-me.linkedin.url")}
+        >
+          <Linkedin class="size-4" />
+          LinkedIn
+        </Button>
+
+        <Button
+          variant="secondary"
+          aria-label="View my GitHub profile (external link)"
+          href="https://github.com/LucasNav6"
+        >
+          <Github class="size-4" />
+          GitHub
+        </Button>
+      </footer>
     </article>
   </div>
 </section>
+
+<style>
+  .picture-square {
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    padding: 0.25rem;
+    background: rgb(0 0 0 / 0.2);
+    object-fit: cover;
+    transform: rotate(3deg);
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 0.7);
+  }
+</style>
