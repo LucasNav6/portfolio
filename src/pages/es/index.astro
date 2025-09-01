@@ -1,11 +1,17 @@
 ---
-import "@/styles/global.css"
+import MainLayout from "@/layout/MainLayout.astro";
+import MetadataLayout from "@/layout/MetadataLayout.astro";
+import Experience from "@/components/organisms/Experience.astro";
+import Hero from "@/components/organisms/Hero.astro";
+import Proyects from "@/components/organisms/Proyects.astro";
+import AboutMe from "@/components/organisms/AboutMe.astro";
 ---
-<html lang="en">
-  <head>
-    <title>Portfolio - Lucas Navarro</title>
-  </head>
-  <body>
-    <h1>Welcome to my website!</h1>
-  </body>
-</html>
+
+<MetadataLayout title="Lucas Navarro" description="Lucas Navarro`s porfolio">
+    <MainLayout lang="es">
+        <Hero />
+        <Experience />
+        <Proyects />
+        <AboutMe />
+    </MainLayout>
+</MetadataLayout>

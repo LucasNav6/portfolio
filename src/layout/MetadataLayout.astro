@@ -1,12 +1,11 @@
 ---
-import "@fontsource-variable/onest"
-
+import { ClientRouter } from 'astro:transitions';
 interface Props {
-  title: string
-  description: string
+  title: string;
+  description: string;
 }
 
-const { description, title } = Astro.props
+const { description, title } = Astro.props;
 ---
 
 <!doctype html>
@@ -18,7 +17,8 @@ const { description, title } = Astro.props
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ClientRouter />
   </head>
-
   <slot />
+
 </html>

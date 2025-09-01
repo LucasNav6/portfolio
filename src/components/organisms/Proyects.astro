@@ -1,23 +1,25 @@
 ---
-import { RocketIcon } from "@lucide/astro";
 import Header from "../molecules/Header.astro";
 import CardProject from "../molecules/CardProject.astro";
 import { PROJECTS } from "@/models/projects";
+import RocketIcon from "@/icons/RocketIcon.astro";
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
-<section class="animate-appear-content mt-6 bg-card">
-  <div class="px-1 md:px-11">
+<section class="animate-appear-content space-y-12 bg-card">
+  <div class="px-2 md:px-11">
     <Header
-      title="Peek at What projects I’ve Been Building"
-      description="Take a look at the latest things I’ve shipped—code, demos, and stories behind"
+      title={t("project.title")}
+      description={t("project.subtitle")}
     >
-      <div class="bg-primary p-2 rounded-full">
-        <RocketIcon class="text-primary-foreground" />
-      </div>
+      <RocketIcon />
     </Header>
   </div>
 
-  <div class="grid grid-cols-1 md:grid-cols-2 border-y">
+  <div class="grid grid-cols-1 md:grid-cols-2 divide-x divide-y ring-1 ring-border">
     {
       PROJECTS.map((project, i) => (
         <CardProject

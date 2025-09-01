@@ -1,64 +1,8 @@
 ---
-import type { Experience } from "@/models/experiences";
-import { formatDate } from "@/utils/formatDate";
-import { diffBetweenDate } from "@/utils/diffBetweenDate";
-import Timeline from "../atoms/Timeline.astro";
+import {TimelineExperienceIsland, type IData} from "./TimelineIsland"
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
 
-interface Props {
-  experiences?: Experience[];
-}
-
-const { experiences = [] } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
-
-<Timeline class="mt-6 md:mt-20">
-  {experiences.map((exp, index) => (
-    <li class={`flex gap-4 animate-appear-content`}>
-
-      <!-- Punto y línea vertical -->
-      <div class="flex flex-col items-center">
-        <div class:list={["bg-primary w-4 h-4 rounded-full top-12 z-10 mt-2 mb-20", (index === experiences.length -1) ? "" : "sticky"]} />
-      </div>
-      
-      <!-- Año / Mes -->
-      <div class="flex flex-col items-start w-10 md:w-20">
-        <div class:list={["top-10 mb-6 md:mb-10", (index === experiences.length -1) ? "" : "sticky"]}>
-          <strong class="text-primary block text-lg md:text-3xl text-left font-bold z-20">
-            {formatDate(exp.date.start).year}
-          </strong>
-          <small class="text-xs md:text-lg text-left z-20 mt-1">
-            {formatDate(exp.date.start).month.slice(0,5).toUpperCase()}
-          </small>
-        </div>
-      </div>
-
-      <!-- Contenido -->
-      <div class="flex-1 pb-8 ml-5">
-        <header class="space-y-1 mb-4">
-          <strong class="text-md font-normal text-primary">{exp.position}</strong>
-          <p class="text-md font-normal flex flex-col md:flex-row items-start md:items-center gap-1 md:gap-3">
-            {exp.company}
-            <small class="text-sm">
-              {diffBetweenDate(exp.date.start, exp.date.end)}
-            </small>
-          </p>
-        </header>
-
-        <div class="space-y-2">
-          <p class="text-sm mb-2">{exp.roleDescription}</p>
-          <strong class="text-sm font-medium underline">Achievements:</strong>
-          {exp.achievements && exp.achievements.length > 0 && (
-            <ul class="flex flex-col space-y-1 text-sm mt-2">
-            {exp.achievements.map((achievement) => (
-              <li class="flex justify-between items-start gap-4">
-                <span class="ml-2 text-primary list-marker">•</span>
-                <span class="flex-1">{achievement}</span>
-              </li>
-            ))}
-          </ul>
-          )}
-        </div>
-      </div>
-    </li>
-  ))}
-</Timeline>
+<TimelineExperienceIsland experiences={t("projects") as IData[]} client:load />

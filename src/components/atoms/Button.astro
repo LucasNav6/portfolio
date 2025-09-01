@@ -29,7 +29,7 @@ const classes = `${base} ${variants[variant]} ${sizes[size]}`;
 ---
 
 {href ? (
-  <a href={href} class={classes} aria-label={ariaLabel}>
+  <a href={href} transition:animate="fade" class={classes} aria-label={ariaLabel}>
     <slot />
   </a>
 ) : (
