@@ -58,13 +58,17 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
             </div>
 
             <div className="relative pl-20 pr-4 md:pl-4 w-full">
-              <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-500 dark:text-neutral-500">
-                {item.title}
-              </h3>
-              <small className="md:hidden block text-2xl mb-4 text-left font-bold text-neutral-500 dark:text-neutral-500">
-                {item.subtitle}
-              </small>
-              {item.content}{" "}
+              <div className="flex-col">
+                <h3 className="md:hidden block text-2xl mb-4 text-left font-bold text-primary leading-0">
+                  {item.title}
+                </h3>
+                <small className="md:hidden block text-lg mb-4 text-left text-muted-foreground">
+                  {item.subtitle}
+                </small>
+              </div>
+              <div className="animate-appear-content">
+                {item.content}{" "}
+              </div>
             </div>
           </div>
         ))}
