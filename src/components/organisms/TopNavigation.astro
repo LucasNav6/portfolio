@@ -20,7 +20,7 @@ const t = useTranslations(lang);
       variant="secondary"
       size="icon"
       aria-label="Cambiar de idioma a español"
-      href={t("topNavigation.langToChange.url")}
+      href={t("topNavigation.langToChange.url") as string}
     >
       {t("topNavigation.langToChange")}
     </Button>

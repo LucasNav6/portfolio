@@ -38,7 +38,7 @@ const t = useTranslations(lang);
         <Button
           variant="secondary"
           aria-label="View my linkedin profile (external link)"
-          href={t("about-me.linkedin.url")}
+          href={t("about-me.linkedin.url") as string}
         >
           <Linkedin class="size-4" />
           LinkedIn
