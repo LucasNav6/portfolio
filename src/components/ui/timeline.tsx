@@ -66,7 +66,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                   {item.subtitle}
                 </small>
               </div>
-              <div className="animate-appear-content">
+              <div>
                 {item.content}{" "}
               </div>
             </div>
