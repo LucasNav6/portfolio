@@ -20,22 +20,27 @@ const langUrl = lang === "en" ? "" : `/${lang}`
   id={id}
   href={`${langUrl}/project/${id}`}
   class="group break-inside-avoid p-4 hover:bg-input/30 ring-0 ring-muted-foreground transition-all duration-300
-       hover:ring-2 cursor-pointer animate-card-appear "
+       hover:ring-2 cursor-pointer animate-card-appear"
 >
   <header class="font-bold mb-2 flex items-center justify-between gap-2">
-    <span class="w-full text-balance">{title}</span>
-    <span class="inline-block ml-2 mb-1 transition-transform duration-300 group-hover:-rotate-45"><ArrowRight /></span>
+    <span transition:name={`title-${id}`} class="w-full text-balance">
+      {title}
+    </span>
   </header>
 
-  <small class="block mb-4">{description}</small>
+  <small transition:name={`desc-${id}`} class="block mb-4 text-sm">
+    {description}
+  </small>
 
   {imageSrc && (
     <Image
       src={imageSrc}
       alt={imageAlt ?? title}
-      class="w-full"
+      transition:name={`image-${id}`}
+      class="w-full rounded-xl"
       width="800"
       height="400"
     />
   )}
 </a>
+

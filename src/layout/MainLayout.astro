@@ -2,6 +2,7 @@
 import TopNavigation from "@/components/organisms/TopNavigation.astro";
 import Footer from "@/components/organisms/Footer.astro";
 // import SpeedInsights from "@vercel/speed-insights/astro";
+import { ClientRouter } from "astro:transitions";
 import "@fontsource-variable/onest";
 import "@/styles/global.css";
 
@@ -19,6 +20,7 @@ const { lang = "en" } = Astro.props;
       </section>
       <Footer />
     </div>
+    <ClientRouter />
     <!-- <SpeedInsights /> -->
   </body>
 </html>
