@@ -3,12 +3,16 @@ import { BriefcaseBusinessIcon } from "lucide-react";
 import Header from "../molecules/Header.astro";
 import { EXPERIENCE_TIMELINE } from "@/models/experiences";
 import TimelineExperience from "../molecules/TimelineExperience.astro";
+import { getLangFromUrl, useTranslations } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
 ---
 
 <div class="section space-y-8">
     <Header
-        title="Where I’ve left fingerprints"
-        description="Stages where I grew and left measurable impact. A tour of the organizations that trusted me and the victories we delivered together."
+        title={t("experience.title")}
+        description={t("experience.subtitle")}
         ><BriefcaseBusinessIcon /></Header
     >
     <TimelineExperience experiences={EXPERIENCE_TIMELINE} />

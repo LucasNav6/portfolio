@@ -12,6 +12,8 @@ export const ui = {
     "topNavigation.Greeting": "Hi, I'm",
     "hero.title": "Shaping your vision into realitys",
     "hero.subtitle": "Self-taught software developer with strong communication, leadership, and problem-solving skills. Skilled in MERN stack, AI, and web platforms.",
+    "experience.title": "Where I’ve left fingerprints",
+    "experience.subtitle": "Stages where I grew and left measurable impact. A tour of the organizations that trusted me and the victories we delivered together.",
     "project.title": "Peek at What projects I’ve Been Building",
     "project.subtitle": "Take a look at the latest things I’ve shipped code, demos, and stories behind",
     "about-me.title": "About Me",
@@ -91,6 +93,8 @@ export const ui = {
     "hero.subtitle": "Desarrollador autodidacta con fuertes habilidades comunicación, liderazgo y resolución. Experto en stack MERN, IA y plataformas web.",
     "project.title": "Vistazo a los proyectos que he estado construyendo",
     "project.subtitle": "Echa un vistazo a lo último que he lanzado código, demos y las historias detrás",
+    "experience.title": "Donde dejé mis huellas",
+    "experience.subtitle": "Etapas en las que crecí y dejé un impacto medible. Un recorrido por las organizaciones que confiaron en mí y las victorias que logramos juntos.",
     "about-me.title": "Sobre mí",
     "about-me.description": "Desarrollador full-stack apasionado por crear soluciones innovadoras impulsadas por IA",
     "about-me.text": `<p><strong class='text-primary font-normal'>+4 años de experiencia en desarrollo de software</strong>, me especializo en crear soluciones SaaS innovadoras integrando <strong class='text-primary font-normal'>IA</strong> y <strong class='text-primary font-normal'>tecnologías web</strong>.</p>

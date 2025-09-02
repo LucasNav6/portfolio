@@ -1,0 +1,81 @@
+---
+import MainLayout from "@/layout/MainLayout.astro";
+import MetadataLayout from "@/layout/MetadataLayout.astro";
+import { PROJECTS } from "@/models/projects";
+import Button from "@/components/atoms/Button.astro";
+import type { GetStaticPaths } from "astro";
+import Github from "@/icons/Github.astro";
+import Link from "@/icons/Link.astro";
+import { ArrowLeft } from "lucide-react";
+import { getLangFromUrl } from "@/i18n/utils";
+
+export const getStaticPaths = (() => {
+    return PROJECTS.map((project) => ({
+        params: { id: project.title.toLowerCase().replace(/\s+/g, "-") },
+        props: { project },
+    }));
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props;
+
+// Detectar idioma desde la URL
+const lang = getLangFromUrl(Astro.url);
+
+// Construir la URL de vuelta
+// Si hay lang => /{lang}/project
+// Si no hay => /project
+const backUrl =
+    lang === "en"
+        ? `/#${project.title.toLowerCase().replace(/\s+/g, "-")}`
+        : `/${lang}#${project.title.toLowerCase().replace(/\s+/g, "-")}`;
+---
+
+<MetadataLayout title="Lucas Navarro" description="Lucas Navarro`s porfolio">
+    <MainLayout lang="en">
+        <section class="px-6 space-y-8 pt-8">
+            <header class="flex justify-between items-center">
+                <a
+                    href={backUrl}
+                    class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition"
+                >
+                    <ArrowLeft />
+                    <span>Volver</span>
+                </a>
+                <div
+                    class="flex items-center gap-4"
+                    transition:animate="fade"
+                >
+                    <Button variant="primary">Ver proyecto</Button>
+                    <Button variant="secondary">Ver repositorio</Button>
+                </div>
+            </header>
+
+            <div>
+                <h1
+                    transition:name={`title-${project.title.toLowerCase().replace(/\s+/g, "-")}`}
+                    class="text-3xl font-extrabold tracking-tight text-primary"
+                >
+                    {project.title}
+                </h1>
+                <p
+                    transition:name={`desc-${project.title.toLowerCase().replace(/\s+/g, "-")}`}
+                    class="mt-4 text-lg text-muted-foreground"
+                >
+                    {project.description}
+                </p>
+            </div>
+
+
+            {
+                project.image && (
+                    <img
+                        src={project.image}
+                        alt={project.title}
+                        transition:name={`image-${project.title.toLowerCase().replace(/\s+/g, "-")}`}
+                        class="w-full rounded-2xl mt-6"
+                    />
+                )
+            }
+        </section>
+    </MainLayout>
+</MetadataLayout>
