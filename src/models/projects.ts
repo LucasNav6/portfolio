@@ -7,6 +7,7 @@ export interface Project {
 }
 export const PROJECTS: Project[] = [
     {
+        slug: "",
         title: "Autonomous Multi-Agent System",
         description:
             "A demo of our multi-agent phone assistant handling restaurant reservations in real time. See how the system manages bookings seamlessly and efficiently!",

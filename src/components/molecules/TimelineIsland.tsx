@@ -1,5 +1,5 @@
 import React from "react";
-import { Timeline } from "@/components/ui/timeline";
+import { Timeline } from "@/components/atoms/timeline";
 
 export interface IData {
   title: string;

@@ -9,11 +9,16 @@ interface Props {
   imageSrc?: string;
   imageAlt?: string;
 }
-const { id, title, description, imageSrc, imageAlt } = Astro.props;
+const { id, title, description, imageSrc, imageAlt} = Astro.props;
+import { getLangFromUrl } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+const langUrl = lang === "en" ? "" : `/${lang}`
 ---
 
-<article
+<a
   id={id}
+  href={`${langUrl}/project/${id}`}
   class="group break-inside-avoid p-4 hover:bg-input/30 ring-0 ring-muted-foreground transition-all duration-300
        hover:ring-2 cursor-pointer animate-card-appear "
 >
@@ -33,4 +38,4 @@ const { id, title, description, imageSrc, imageAlt } = Astro.props;
       height="400"
     />
   )}
-</article>
+</a>
